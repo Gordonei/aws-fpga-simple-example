@@ -30,7 +30,7 @@
 /***********
  * Copyleft 2017, Gordon Inggs
  * I really don't mind what you do with this code.
- * I would appreciate it if you change it, that you mention that you have.
+ * I would appreciate that if you change it, that you mention that you have.
  ***********/
 #pragma once
 
@@ -75,8 +75,7 @@ std::vector<cl::Device> get_xil_devices() {
 	return get_devices("Xilinx");
 }
 
-cl::Program::Binaries import_binary_file(std::string xclbin_file_name) 
-{
+cl::Program::Binaries import_binary_file(std::string xclbin_file_name) { 
     std::cout << "INFO: Importing " << xclbin_file_name << std::endl;
 
 	if(access(xclbin_file_name.c_str(), R_OK) != 0) {
@@ -121,8 +120,12 @@ int main(int argc, char* argv[]) {
     cl::Context context(device);
     cl::CommandQueue q(context, device, CL_QUEUE_PROFILING_ENABLE);
     std::string device_name = device.getInfo<CL_DEVICE_NAME>(); 
-
+    
+    #ifdef XCL_EMULATION
     std::string binaryFile = "sum.awsxclbin";
+    #else
+    std::string binaryFile = "sum_emu.xclbin";
+    #endif
     cl::Program::Binaries bins = import_binary_file(binaryFile);
 
     devices.resize(1);
