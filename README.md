@@ -36,7 +36,7 @@ This is a simple vector sum example that uses SDx to generate an AFI for the Ama
 ## Running the Code
 ### Setting up the Runtime Instance
 1. Launch a F1-instance
-  * In theory this could be any OS, but for simplicity's sake use the developer AMI: `ami-df3e6da4` in us-east-1
+   * In theory this could be any OS, but for simplicity's sake use the developer AMI: `ami-df3e6da4` in us-east-1
 2. Setup AWS creds: `aws configure`
 3. Setup the SDK: 
    1. Pull in aws-fpga-preview: `git clone git@github.com:aws/aws-fpga-preview.git $AWS_FPGA_REPO_DIR`
@@ -49,7 +49,7 @@ This is a simple vector sum example that uses SDx to generate an AFI for the Ama
    1. Clear the slot: `sudo fpga-clear-local-image  -S 0`
    2. Check that it has been cleared: `sudo fpga-describe-local-image -S 0 -H`
    3. Load the AFI: `sudo fpga-load-local-image -S 0 -I <AFGI of image>` 
-     * ***NB that this is the AFGI, not the AFI***
+     * ***NB that this is the *AFGI*, not the *AFI* ***
    4. Check that it has been loaded: `sudo fpga-describe-local-image -S 0 -R -H`
 2. Change to a root bash shell: `sudo bash`
    * I'm not sure, but I think this is because root access is required to access the device
